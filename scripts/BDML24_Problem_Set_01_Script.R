@@ -2,6 +2,10 @@
 # BDML - FEB 24
 # Problem Set # 1
 # authors: 
+#           González Galvis, Daniel Enrique
+#           González Junca, Daniela Natalia
+#           Mendoza Potes, Valentina
+#           Rodríguez Pacheco, Alfredo José
 ##########################################################
 
 
@@ -29,16 +33,22 @@ p_load(rio, # import/export data
 
 
 # Load data ---------------------------------------------------------------
-my_url = "https://ignaciomsarmiento.github.io/GEIH2018_sample/"
-browseURL(my_url) ## Ir a la página
 
-my_html = read_html(my_url) ## leer el html de la página
-class(my_html) ## ver la clase del objeto
+my_url_base <- "https://ignaciomsarmiento.github.io/GEIH2018_sample/page"
+my_url_pages <- c(1:10)  # Create a vector of page numbers (integers)
+my_url_ext <- ".html"
+
+my_urls <- paste0(my_url_base, my_url_pages, my_url_ext)  # Concatenate all elements
+
+for (i in 1:length(my_urls)) {
+  url <- my_urls[i]
+  #browseURL(url)  # Print the full URL
+  my_html = read_html(url)
+  class(my_html) ## ver la clase del objeto
+  #view(my_html)
+  }
 
 #View(my_html)
 
 my_html %>% html_elements("h2")
 
-# plot data ---------------------------------------------------------------
-
-plot(dta$gdpgr, dta$gdpcapgr, pch="*")
