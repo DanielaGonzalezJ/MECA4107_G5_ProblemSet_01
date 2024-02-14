@@ -12,16 +12,32 @@ cat("\014")
 
 
 # Load Packages -----------------------------------------------------------
-pkg<-list("dplyr","here")
-lapply(pkg, require, character.only=T)
-rm(pkg)
 
+## Install Packages
+
+if(!require(pacman)) install.packages("pacman") ; require(pacman)
+
+
+p_load(rio, # import/export data
+       tidyverse, # tidy-data
+       skimr, # summary data
+       gridExtra, ## visualizing missing data
+       corrplot, ## Correlation Plots 
+       stargazer, ## tables/output to TEX.
+       rvest, ## Web Scraping Package
+       MASS)   
 
 
 # Load data ---------------------------------------------------------------
-# I recomend you using the package here
-dta<-read.table(here("stores","US90.txt"), sep="", header=TRUE)
+my_url = "https://ignaciomsarmiento.github.io/GEIH2018_sample/"
+browseURL(my_url) ## Ir a la página
 
+my_html = read_html(my_url) ## leer el html de la página
+class(my_html) ## ver la clase del objeto
+
+#View(my_html)
+
+my_html %>% html_elements("h2")
 
 # plot data ---------------------------------------------------------------
 
