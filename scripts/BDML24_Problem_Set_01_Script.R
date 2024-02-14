@@ -50,5 +50,5 @@ for (i in 1:length(my_urls)) {
 
 #View(my_html)
 
-my_html %>% html_elements("h2")
+my_html %>% html_elements("h4")
 
