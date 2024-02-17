@@ -42,12 +42,17 @@ my_url_ext <- ".html"
 my_urls <- paste0(my_url_base, my_url_pages, my_url_ext)  # Concatenate all elements
 
 my_html = list()
+<<<<<<< Updated upstream
 div = list()
+=======
+table_1 = list()
+>>>>>>> Stashed changes
 
 for (i in 1:length(my_urls)) {
   url <- my_urls[i]
   #browseURL(url)  # Print the full URL
   my_html[[i]] = read_html(url)
+<<<<<<< Updated upstream
   class(my_html[[i]]) ## ver la clase del objeto
   #view(my_html[[i]])
   div[[i]]<- my_html[[i]] %>% html_elements("div") %>%
@@ -59,3 +64,12 @@ for (i in 1:length(my_urls)) {
 
 
 #----------------------------------------------------------------------------
+=======
+  table_1[[i]] <- my_html[[i]] %>%  html_table() 
+  #table_1[[i]] <- as.data.frame()
+    }
+#----------------------------------------------------------------------------
+my_html[[1]]
+table_1[[1]]
+
+>>>>>>> Stashed changes
