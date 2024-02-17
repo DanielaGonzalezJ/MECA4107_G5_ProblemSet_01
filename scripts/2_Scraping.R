@@ -41,19 +41,25 @@ my_url_ext <- ".html"
 
 my_urls <- paste0(my_url_base, my_url_pages, my_url_ext)  # Concatenate all elements
 
+my_url_base_GH <- "https://ignaciomsarmiento.github.io/GEIH2018_sample/pages/geih_page_" 
+my_url_ext_GH <- ".html"
+
+my_urls_GH <- paste0(my_url_base_GH, my_url_pages, my_url_ext_GH)  # Concatenate all elements
+
 my_html = list()
 table_1 = list()
 
-for (i in 1:length(my_urls)) {
-  url <- my_urls[i]
+
+for (i in 1:length(my_urls_GH)) {
+  url <- my_urls_GH[i]
   #browseURL(url)  # Print the full URL
   my_html[[i]] = read_html(url)
-  table_1[[i]] <- my_html[[i]] %>%  html_table() 
-  #table_1[[i]] <- as.data.frame()
+  table_1[[i]] <- my_html[[i]] %>%  html_table()
+  #table_1[[i]] <- as.data.frame(table[[i]])
     }
 
 my_html[[1]]
 table_1[[1]]
-
+table_1[[1]][1]
 
 #----------------------------------------------------------------------------
