@@ -32,23 +32,7 @@ p_load(rio, # import/export data
        MASS)   
 
 
-# Load data ---------------------------------------------------------------
+##Scraping
+source('1_Scraping.R')
 
-my_url_base <- "https://ignaciomsarmiento.github.io/GEIH2018_sample/page"
-my_url_pages <- c(1:10)  # Create a vector of page numbers (integers)
-my_url_ext <- ".html"
-
-my_urls <- paste0(my_url_base, my_url_pages, my_url_ext)  # Concatenate all elements
-
-for (i in 1:length(my_urls)) {
-  url <- my_urls[i]
-  #browseURL(url)  # Print the full URL
-  my_html = read_html(url)
-  class(my_html) ## ver la clase del objeto
-  #view(my_html)
-  }
-
-#View(my_html)
-
-my_html %>% html_elements("h4")
-
+##
