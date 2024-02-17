@@ -32,7 +32,14 @@ p_load(rio, # import/export data
        MASS)   
 
 
-##Scraping
-source('1_Scraping.R')
+## Scraping
+source('2_Scraping.R')
 
-##
+## Age - Wage Profile
+source('3_Age_Wage_Profile')
+
+## Gender Earnings Gap
+source('4_Gender_Earnings_Gap')
+
+## Predicting_Earnings
+source('5_Predicting_Earnings')
