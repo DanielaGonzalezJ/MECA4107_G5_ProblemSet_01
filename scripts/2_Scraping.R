@@ -55,11 +55,7 @@ for (i in 1:length(my_urls_GH)) {
   #browseURL(url)  # Print the full URL
   my_html[[i]] = read_html(url)
   table_1[[i]] <- my_html[[i]] %>%  html_table()
-  #table_1[[i]] <- as.data.frame(table[[i]])
+  table_1[[i]] <- as.data.frame(table_1[[i]])
     }
-
-my_html[[1]]
-table_1[[1]]
-
 
 #----------------------------------------------------------------------------
