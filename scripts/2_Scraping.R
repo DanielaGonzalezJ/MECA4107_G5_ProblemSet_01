@@ -48,7 +48,7 @@ my_urls_GH <- paste0(my_url_base_GH, my_url_pages, my_url_ext_GH)  # Concatenate
 
 my_html = list()
 table_1 = list()
-
+table = list()
 
 for (i in 1:length(my_urls_GH)) {
   url <- my_urls_GH[i]
@@ -56,6 +56,21 @@ for (i in 1:length(my_urls_GH)) {
   my_html[[i]] = read_html(url)
   table_1[[i]] <- my_html[[i]] %>%  html_table()
   table_1[[i]] <- as.data.frame(table_1[[i]])
-    }
+  table <- rbind(table, table_1[[i]])
+}
+
+table <- as_tibble(table)
+
+## Filter
+
+bd <- table %>% 
+  filter(table, P6040 >= 18 , ocu==1 , P6240==1) 
+
+
+bd_2 <- bd %>% 
+      group_by(P6020,P6040) %>% 
+      summarise(ingMed = mean(P6500, na.rm=T), .groups="drop") %>% 
+
+bd_2 %>%  dplyr::select(P6020,P6040, ingMed) %>% head(4)
 
 #----------------------------------------------------------------------------
