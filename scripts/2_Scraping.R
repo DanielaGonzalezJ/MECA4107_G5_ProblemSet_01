@@ -128,7 +128,7 @@ table <- table %>%
 #seleccionar Variables de interés y exportar reportes en txt y latex
 estadisticas <- select(table,Edad,Sexo,'Ingreso Observado','Ingreso Imputado',Estrato,'Tiempo en este trabajo', 'Horas trabajadas semanal','Parentesco con el jefe del hogar','Oficio')
 estadisticas <- data.frame(estadisticas)
-stargazer(estadisticas,type = "text", title="Estadísticas Descriptivas",out="Estadisticas_Descriptivas_text",style="aer")
-stargazer(estadisticas, type = "latex", title="Estadísticas Descriptivas",out="Estadisticas_Descriptivas_Latex",style="aer")
+stargazer(estadisticas,type = "text", title="Estadísticas Descriptivas",out="C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/view/Estadisticas_Descriptivas_text",style="aer")
+stargazer(estadisticas, type = "latex", title="Estadísticas Descriptivas",out="C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/view/Estadisticas_Descriptivas_Latex",style="aer")
 
 
