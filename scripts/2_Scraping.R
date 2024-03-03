@@ -44,3 +44,43 @@ for (i in 1:10){
   table<- as.data.frame(table)
   table_u <- rbind(table_u,table)
 }
+#####Filtrado de Datos por condiciones####
+
+#Solo mayores de edad Mayores de edad
+table <- table_u %>% filter(age>=18)
+
+#Only on employed individuals!! <- No desempleados, No Incativois 
+#No Inactivos
+table <- table %>% filter(inac ==0)
+
+# Personas que reportaron ocupar la mayor parte del tiempo trabajando
+table <- table %>% filter(p6240 == 1)
+
+# Esta ocupado
+table <- table %>% filter(ocu==1)
+
+
+####Primera visualización de Estadísticas descriptivas#######
+
+est_des <- skim(table)
+
+######### Revisar distribución mediante gráfico de barras########
+
+a<- ggplot(table, aes(x = hoursWorkUsual )) +
+  geom_histogram(bins = 50, fill = "darkblue") +
+  labs(x = "Total Horas trabajadas", y = "N. Obs") +
+  theme_classic() 
+
+b<- ggplot(table, aes(x = log(ingtotob)  )) +
+  geom_histogram(bins = 50, fill = "darkblue") +
+  labs(x = "Log del Ingreso total", y = "N. Obs") +
+  theme_classic() 
+
+c <- ggplot(table, aes(x = estrato1 )) +
+  geom_histogram(bins = 50, fill = "darkblue") +
+  labs(x = "Hogares por estrato social", y = "N. Obs") +
+  theme_classic() 
+
+d <- grid.arrange(a, b, c, ncol = 3)
+
+ggsave("Distribucion_1.png", plot = d, units = "in")
