@@ -13,64 +13,16 @@
 #Separate each section with labels
 # Clean the workspace -----------------------------------------------------
 rm(list=ls())
-cat("\014")
-
 
 # Load Packages -----------------------------------------------------------
 
-## Install Packages
+## Intalación de todos lo paquetes
 
 if(!require(pacman)) install.packages("pacman") ; require(pacman)
 
+require(pacman)
+setwd("C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Taller I")
 
-p_load(rio, # import/export data
-       tidyverse, # tidy-data
-       skimr, # summary data
-       gridExtra, ## visualizing missing data
-       corrplot, ## Correlation Plots 
-       stargazer, ## tables/output to TEX.
-       rvest, ## Web Scraping Package
-       MASS)   
+p_load(haven,skimr, tidyverse, forecast, ggplot2, tseries, readxl, writexl, dplyr, 
+       fable, fpp2, lubridate, mFilter, urca, stargazer, quantmod, margins,ggeffects,rvest,grid,gridExtra,psych,xtable)
 
-
-# Load data ---------------------------------------------------------------
-
-my_url_base <- "https://ignaciomsarmiento.github.io/GEIH2018_sample/page"
-my_url_pages <- c(1:10)  # Create a vector of page numbers (integers)
-my_url_ext <- ".html"
-
-my_urls <- paste0(my_url_base, my_url_pages, my_url_ext)  # Concatenate all elements
-
-my_url_base_GH <- "https://ignaciomsarmiento.github.io/GEIH2018_sample/pages/geih_page_" 
-my_url_ext_GH <- ".html"
-
-my_urls_GH <- paste0(my_url_base_GH, my_url_pages, my_url_ext_GH)  # Concatenate all elements
-
-my_html = list()
-table_1 = list()
-table = list()
-
-for (i in 1:length(my_urls_GH)) {
-  url <- my_urls_GH[i]
-  #browseURL(url)  # Print the full URL
-  my_html[[i]] = read_html(url)
-  table_1[[i]] <- my_html[[i]] %>%  html_table()
-  table_1[[i]] <- as.data.frame(table_1[[i]])
-  table <- rbind(table, table_1[[i]])
-}
-
-table <- as_tibble(table)
-
-## Filter
-
-bd <- table %>% 
-  filter(table, P6040 >= 18 , ocu==1 , P6240==1) 
-
-
-bd_2 <- bd %>% 
-      group_by(P6020,P6040) %>% 
-      summarise(ingMed = mean(P6500, na.rm=T), .groups="drop") %>% 
-
-bd_2 %>%  dplyr::select(P6020,P6040, ingMed) %>% head(4)
-
-#----------------------------------------------------------------------------
