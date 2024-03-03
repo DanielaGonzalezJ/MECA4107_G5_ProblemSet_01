@@ -33,3 +33,5 @@ ggplot(table_4, aes(x = college )) +
   geom_histogram(bins = 50, fill = "darkblue") +
   labs(x = "Total Income", y = "Cantidad") +
   theme_bw() 
+
+

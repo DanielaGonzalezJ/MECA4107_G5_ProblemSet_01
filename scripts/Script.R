@@ -5,7 +5,7 @@ require(pacman)
 #setwd("C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Taller I")
 
 p_load(haven,skimr, tidyverse, forecast, ggplot2, tseries, readxl, writexl, dplyr, 
-       fable, fpp2, lubridate, mFilter, urca, stargazer, quantmod, margins,ggeffects,rvest,grid,gridExtra, rio)
+       fable, fpp2, lubridate, mFilter, urca, stargazer, quantmod, margins,ggeffects,rvest,grid,gridExtra, rio, boot)
 
 ####Cargar Datos (Scrping)####
 
