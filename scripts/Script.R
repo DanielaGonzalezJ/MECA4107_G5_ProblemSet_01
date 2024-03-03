@@ -2,10 +2,10 @@ rm(list = ls())
 if(!require(pacman)) install.packages("pacman") ; require(pacman)
 
 require(pacman)
-setwd("C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Taller I")
+#setwd("C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Taller I")
 
 p_load(haven,skimr, tidyverse, forecast, ggplot2, tseries, readxl, writexl, dplyr, 
-       fable, fpp2, lubridate, mFilter, urca, stargazer, quantmod, margins,ggeffects,rvest,grid,gridExtra)
+       fable, fpp2, lubridate, mFilter, urca, stargazer, quantmod, margins,ggeffects,rvest,grid,gridExtra, rio)
 
 ####Cargar Datos (Scrping)####
 
@@ -42,7 +42,7 @@ table <- table %>% filter(p6240 == 1)
 table <- table %>% filter(ocu==1)
 
 #Salario Mayor a 0
-table_u <- subset(table_u, P6500 >0)
+table_u <- subset(table_u, p6500 >0)
 
 
 ####Estadísticas descriptivas#######
@@ -89,4 +89,3 @@ ggplot(table, aes(x = log_ingtot_1 )) +
   theme_bw() 
 
 write_xlsx(table, "Base_Filtrada.xlsx")
-
