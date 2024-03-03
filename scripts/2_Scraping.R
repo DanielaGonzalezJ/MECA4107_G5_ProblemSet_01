@@ -107,7 +107,7 @@ e <- ggplot(table, aes(x = log_ingtot_1 )) +
 
 ggsave("Distribucion_2.png", plot = e, units = "in")
 
-#write_xlsx(table, "Base_Filtrada.xlsx")
+write_xlsx(table, "C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/view/Base_Filtrada.xlsx")
 
 ##### Estadísticas Descriptivas#######
 #Renombrar Variables
