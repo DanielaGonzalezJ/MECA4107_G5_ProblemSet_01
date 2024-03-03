@@ -83,7 +83,7 @@ c <- ggplot(table, aes(x = estrato1 )) +
 
 d <- grid.arrange(a, b, c, ncol = 3)
 
-ggsave("Distribucion_1.png", plot = d, units = "in")
+ggsave("C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Distribucion_1.png", plot = d, units = "in")
 
 ##### Imputación de Ingreso por Estrato para reportes de 0####
 
@@ -105,9 +105,9 @@ e <- ggplot(table, aes(x = log_ingtot_1 )) +
   labs(x = "Ingreso (Imputado por Estrato) en Log", y = "N. Obs") +
   theme_classic() 
 
-ggsave("Distribucion_2.png", plot = e, units = "in")
+ggsave("C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Distribucion_2.png", plot = e, units = "in")
 
-write_xlsx(table, "C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/view/Base_Filtrada.xlsx")
+write_xlsx(table, "C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Base_Filtrada.xlsx")
 
 ##### Estadísticas Descriptivas#######
 #Renombrar Variables
@@ -128,7 +128,7 @@ table <- table %>%
 #seleccionar Variables de interés y exportar reportes en txt y latex
 estadisticas <- select(table,Edad,Sexo,'Ingreso Observado','Ingreso Imputado',Estrato,'Tiempo en este trabajo', 'Horas trabajadas semanal','Parentesco con el jefe del hogar','Oficio')
 estadisticas <- data.frame(estadisticas)
-stargazer(estadisticas,type = "text", title="Estadísticas Descriptivas",out="C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/view/Estadisticas_Descriptivas_text",style="aer")
-stargazer(estadisticas, type = "latex", title="Estadísticas Descriptivas",out="C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/view/Estadisticas_Descriptivas_Latex",style="aer")
+stargazer(estadisticas,type = "text", title="Estadísticas Descriptivas",out="C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Estadisticas_Descriptivas_text",style="aer")
+stargazer(estadisticas, type = "latex", title="Estadísticas Descriptivas",out="C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Estadisticas_Descriptivas_Latex",style="aer")
 
 
