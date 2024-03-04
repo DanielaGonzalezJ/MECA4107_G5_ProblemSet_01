@@ -107,11 +107,11 @@ e <- ggplot(table, aes(x = log_ingtot_1 )) +
 
 ggsave("C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Distribucion_2.png", plot = e, units = "in")
 
-write_xlsx(table, "C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Base_Filtrada.xlsx")
+write_xlsx(table, "C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/scripts/Base_Filtrada.xlsx")
 
 ##### Estadísticas Descriptivas#######
 #Renombrar Variables
-table <- table %>% 
+table__1 <- table %>% 
   rename(Escolaridad = p6210,
          'Tiempo en este trabajo' = p6426,
          Sexo = sex,
@@ -126,8 +126,9 @@ table <- table %>%
   )
 
 #seleccionar Variables de interés y exportar reportes en txt y latex
-estadisticas <- select(table,Edad,Sexo,'Ingreso Observado','Ingreso Imputado',Estrato,'Tiempo en este trabajo', 'Horas trabajadas semanal','Parentesco con el jefe del hogar','Oficio')
+estadisticas <- dplyr::select(table__1,Edad,Sexo,'Ingreso Observado','Ingreso Imputado',Estrato,'Tiempo en este trabajo', 'Horas trabajadas semanal','Parentesco con el jefe del hogar','Oficio')
 estadisticas <- data.frame(estadisticas)
+
 stargazer(estadisticas,type = "text", title="Estadísticas Descriptivas",out="C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Estadisticas_Descriptivas_text",style="aer")
 stargazer(estadisticas, type = "latex", title="Estadísticas Descriptivas",out="C:/Users/USER/OneDrive - Universidad de los andes/Semestre VIII/Big Data/Repositorios/MECA4107_G5_ProblemSet_01/views/Estadisticas_Descriptivas_Latex",style="aer")
 
