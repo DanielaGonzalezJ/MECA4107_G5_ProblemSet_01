@@ -23,7 +23,7 @@ p_load(tidyverse,
        boot,
        estimatr)
 
-##Importar/ ajustar base
+##Importar ajustar base
 
 df <- read_excel("Base_Filtrada.xlsx")
 df <- as_tibble(df)
