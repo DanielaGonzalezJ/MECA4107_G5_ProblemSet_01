@@ -8,6 +8,7 @@
 #           Rodríguez Pacheco, Alfredo José
 ##########################################################
 
+table <- read_excel("Base_Filtrada.xlsx")
 ## Punto 5. Predicting Earnings
 
 table <- table  %>%
@@ -16,7 +17,7 @@ table <- table  %>%
 
 ### Punto 5 
 
-table1<- table  %>% select(log_ingtot_1,
+table1<- table  %>% dplyr::select(log_ingtot_1,
                            age,
                            sex, 
                            totalHoursWorked, 
