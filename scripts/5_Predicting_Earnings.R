@@ -13,6 +13,7 @@
 table <- table  %>%
   mutate(maxEducLevel = ifelse(is.na(maxEducLevel), mean(maxEducLevel, na.rm=T) , maxEducLevel))
 
+
 ### Punto 5 
 
 table1<- table  %>% select(log_ingtot_1,

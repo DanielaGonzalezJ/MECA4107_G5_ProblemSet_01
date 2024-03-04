@@ -21,10 +21,9 @@ p_load(tidyverse,
        sandwich,
        lmtest,
        boot,
-       car,
        estimatr)
 
-##Importar/ ajustar base
+##Importar ajustar base
 
 df <- read_excel("Base_Filtrada.xlsx")
 df <- as_tibble(df)
@@ -33,27 +32,31 @@ df_3 <- df_3 %>% dplyr::mutate(agesqr = age^2)
 
 ##Modelo de regresión
 
-mod_3 <- lm_robust(log_ingtot_1 ~ age + agesqr, data = df_3)
+mod_3 <- lm(log_ingtot_1 ~ age + agesqr, data = df_3)
 
 ##Boot function
 
-f_boot <- function(df_3, indices) {
-  sample <- df_3[indices, ]
-  age_values <- seq(min(sample$age), max(sample$age), length.out = 14091)
-  predicted_wage <- predict(mod_3, newdata = data.frame(age = age_values, agesqr = age_values^2))
-  peak_age <- age_values[which.max(predicted_wage)]
-  return(peak_age)
+bootf <- function(df_3, index) {
+  f <- lm_robust(log_ingtot_1 ~ age + agesqr, data = df_3, subset = index)
+  coefs <- f$coefficients
+  b1 <- coefs[2]
+  b2 <- coefs[3]
+  age <- b1/2*b2
+  return(age)
 }
 
 ##Boot
-bootmod_3 <- boot(df_3, f_boot, R = 1000)
-
-ci_peak <- boot.ci(bootmod_3, type = "basic")
+bootmod_3 <- boot(df_3, bootf, R = 1000)
+low <- quantile(boot_results$t, 0.05)
+up  <- quantile(boot_results$t, 0.95)
 
 ##Tabla de regresion##No funciona
-stargazer(mod_3, type = "text",
-          se = list(ci_peak),
-          title = "Regresión Modelo 3")
+
+#mod_3_table <- stargazer(mod_3, low, up, type = "latex",
+#                         se = starprep(mod_3),
+#                         title = "Regresión Modelo 3")
+cat(mod_3_table, file = "Regmod3.tex")
+
 
 
 ##Grafico
@@ -62,10 +65,12 @@ predicted_wage <- predict(mod_3, newdata = data.frame(age = age_values, agesqr =
 peak_age <- age_values[which.max(predicted_wage)]
 
 #plot
+pdf("Age-Earning Profile.pdf")
+
 plot(age_values, predicted_wage, type = 'l', xlab = 'Age', ylab = 'Wage', main = 'Age-Earning Profile')
 
-#intervalos
 
 # incluir edad máxima
 abline(v = peak_age, col = "blue", lty = 2)
 text(peak_age, max(predicted_wage), paste("Peak Age:", round(peak_age, 2)), pos = 3, col = "blue")
+dev.off()
