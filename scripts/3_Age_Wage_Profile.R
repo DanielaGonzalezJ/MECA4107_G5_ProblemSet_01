@@ -52,9 +52,9 @@ up  <- quantile(boot_results$t, 0.95)
 
 ##Tabla de regresion##No funciona
 
-mod_3_table <- stargazer(mod_3, low, up, type = "latex",
-                         se = starprep(mod_3),
-                         title = "Regresión Modelo 3")
+#mod_3_table <- stargazer(mod_3, low, up, type = "latex",
+#                         se = starprep(mod_3),
+#                         title = "Regresión Modelo 3")
 cat(mod_3_table, file = "Regmod3.tex")
 
 
