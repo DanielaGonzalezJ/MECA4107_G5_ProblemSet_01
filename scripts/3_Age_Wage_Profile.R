@@ -51,9 +51,9 @@ bootmod_3 <- boot(df_3, f_boot, R = 1000)
 ci_peak <- boot.ci(bootmod_3, type = "basic")
 
 ##Tabla de regresion##No funciona
-stargazer(mod_3, type = "text",
-          se = list(ci_peak),
-          title = "Regresión Modelo 3")
+#stargazer(mod_3, type = "text",
+#          se = list(ci_peak),
+#         title = "Regresión Modelo 3")
 
 
 ##Grafico
