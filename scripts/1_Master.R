@@ -29,17 +29,38 @@ p_load(rio, # import/export data
        corrplot, ## Correlation Plots 
        stargazer, ## tables/output to TEX.
        rvest, ## Web Scraping Package
-       MASS)   
-
+       MASS,
+       haven,
+       forecast, 
+       ggplot2, 
+       readxl, 
+       writexl, 
+       dplyr, 
+       fable, 
+       fpp2, 
+       lubridate, 
+       mFilter, 
+       urca, 
+       quantmod, 
+       margins,
+       ggeffects,
+       grid,
+       psych,
+       xtable,
+       sandwich,
+       lmtest,
+       boot,
+       estimatr, 
+       caret)
 
 ## Scraping
 source('2_Scraping.R')
 
 ## Age - Wage Profile
-source('3_Age_Wage_Profile')
+source('3_Age_Wage_Profile.R')
 
 ## Gender Earnings Gap
-source('4_Gender_Earnings_Gap')
+source('4_Gender_Earnings_Gap.R')
 
 ## Predicting_Earnings
-source('5_Predicting_Earnings')
+source('5_Predicting_Earnings.R')

@@ -10,18 +10,7 @@
 
 ## Punto 3. Age - Wage Profile
 ##Limpiar ambiente
-rm(list=ls())
-##Llamar librerias
 
-if(!require(pacman)) install.packages("pacman") ; require(pacman)
-
-p_load(tidyverse,
-       skimr,
-       readxl,
-       sandwich,
-       lmtest,
-       boot,
-       estimatr)
 
 ##Importar ajustar base
 
@@ -47,16 +36,8 @@ bootf <- function(df_3, index) {
 
 ##Boot
 bootmod_3 <- boot(df_3, bootf, R = 1000)
-low <- quantile(boot_results$t, 0.05)
-up  <- quantile(boot_results$t, 0.95)
-
-##Tabla de regresion##No funciona
-
-#mod_3_table <- stargazer(mod_3, low, up, type = "latex",
-#                         se = starprep(mod_3),
-#                         title = "Regresión Modelo 3")
-cat(mod_3_table, file = "Regmod3.tex")
-
+low <- quantile(bootmod_3$t, 0.05)
+up  <- quantile(bootmod_3$t, 0.95)
 
 
 ##Grafico

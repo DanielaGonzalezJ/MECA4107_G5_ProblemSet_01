@@ -14,7 +14,7 @@
 # Punto 4
 #####
 
-
+table <- read_excel("Base_Filtrada.xlsx")
 ## a. Unconditional Wage Gap:
 
 table_4 <- table
