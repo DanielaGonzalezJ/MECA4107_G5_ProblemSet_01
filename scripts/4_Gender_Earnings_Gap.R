@@ -27,7 +27,7 @@ reg1<-lm(log_ingtot_1 ~ sex_1, data =table_4)
 ## b. Equal Pay for Equal Work:
 
 
-reg2 <- lm(log_ingtot_1 ~ sex_1 + age +  I(sex*age) + factor(oficio) + factor(college), data =table_4) 
+reg2 <- lm(log_ingtot_1 ~ sex_1 + age +  I(sex_1*age) + factor(oficio) + factor(college), data =table_4) 
 
 
 #a & b
@@ -38,23 +38,23 @@ stargazer(reg1, reg2, omit="oficio",type="latex",digits=2)
 
 #Regress X1 ~ sex_1 on X2 ~ age and take the residuals
 
-table_4<-table_4 %>% mutate(sexResidF=lm(sex_1 ~ age  +  I(sex*age) + factor(oficio) + factor(college) ,table_4)$residuals) #Residuals of weight~foreign 
+table_4<-table_4 %>% mutate(sexResidF=lm(sex_1 ~ age  +  I(sex_1*age) + factor(oficio) + factor(college) ,table_4)$residuals) #Residuals of weight~foreign 
 
 #Regress Y on X2 and take the residuals
 
-table_4<-table_4 %>% mutate(litResidF=lm(log_ingtot_1 ~ age  +  I(sex*age)+ factor(oficio) + factor(college), table_4)$residuals) #Residuals of mpg~foreign 
+table_4<-table_4 %>% mutate(litResidF=lm(log_ingtot_1 ~ age  +  I(sex_1*age)+ factor(oficio) + factor(college), table_4)$residuals) #Residuals of mpg~foreign 
 
 #Regress the residuals from step 2 on the residuals from step 1
 reg4<-lm(litResidF~sexResidF , table_4)
 
-stargazer(reg2,reg4, omit="oficio", type="text",digits=2) # with stargazer we can visualize the coefficients next to each other
+stargazer(reg2,reg4, omit="oficio", type="latex",digits=2) # with stargazer we can visualize the coefficients next to each other
 
 
 ## OLS with Bootstrap
 
 
 beta_1 <- function(data, index){
-  coef(lm(log_ingtot_1 ~ sex_1 + age  +  I(sex*age) + factor(oficio) + factor(college), data = table_4 , subset = index))[2]
+  coef(lm(log_ingtot_1 ~ sex_1 + age  +  I(sex_1*age) + factor(oficio) + factor(college), data = table_4 , subset = index))[2]
 }
 
 beta_1(table_4, 1:nrow(table_4))
@@ -75,7 +75,7 @@ beta_1_1(table_4, 1:nrow(table_4))
 
 set.seed(86508)
 #Call boot
-boot_result_FWL <-oot(table_4, beta_1_1, R=1000)
+boot_result_FWL <- boot(table_4, beta_1_1, R=1000)
 
 
 ## Plot and Peak Age Estimation
@@ -86,7 +86,7 @@ predict_wage <- function(age, gender) {
   coefs <- coef(reg2)
   
   # Calculate predicted wage based on age and gender indicator
-  predicted_wage <- coefs[1] + coefs[2] * age + coefs[3] * gender
+  predicted_wage <- coefs[1] + coefs[2] * gender + coefs[3] * age + coefs[4] * I(gender*age)
   return(predicted_wage)
 }
 
