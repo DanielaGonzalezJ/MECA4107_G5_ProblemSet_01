@@ -28,8 +28,8 @@ p_load(tidyverse,
 
 df <- read_excel("Base_Filtrada.xlsx")
 df <- as_tibble(df)
-df_3 <- df %>% select(log_ingtot_1, age)
-df_3 <- df_3 %>% mutate(agesqr = age^2)
+df_3 <- df %>% dplyr::select(log_ingtot_1, age)
+df_3 <- df_3 %>% dplyr::mutate(agesqr = age^2)
 
 ##Modelo de regresión
 
